@@ -1,0 +1,73 @@
+﻿@*Strong typed*@
+@model Application.ViewModel.ConvertionListViewModel;
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center mt-3">
+    <div class="col-6 mx-auto">
+        <h1 class="display-4 fw-bold text-primary">Currency Converter App</h1>
+        <p class="fs-5 text-white">Welcome to Currency Converters App where you can convert between all the currencies we have available.</p>
+    </div>
+    <div class="row mt-3 mb-5 mt-5">
+        <div class="col-6 mx-auto">
+            <div class="card bg-dark rounded mb-5">
+                <div class="card-header bg-primary text-center ms-0 me-0 text-white rounded">
+                    <h3>Select the currencies to convert</h3>
+                </div>
+
+                @if (Model.ConvertionList.Count != 0){
+
+                    <h1 class="text-white text-center py-3">@Model.ConvertionList[Model.ConvertionList.Count - 1].ConvertionResult</h1>
+
+                }
+                
+
+                <div class="card-body px-3">
+
+                    <form method="post" asp-controller="Home" asp-action="GetConvertion">
+                        <div class="row align-items-center text-center">
+                            <div class="col-auto">
+                                <label class="col-form-label text-white fw-bold fs-5 ms-2">Convert from:</label>
+                            </div>
+
+                            <div class="col-8">
+                                <div class="input-group mb-3 px-3 bg-dark text-white mt-3">
+                                    <select class="form-select d-inline" name="FromCurrency" required>
+                                        <option selected disabled>Currency</option>
+                                        <option value="1">United States Dollar</option>
+                                        <option value="2">Euro</option>
+                                        <option value="3">Dominican Peso</option>
+                                    </select>
+                                    <input type="number" class="form-control bg-dark border-2 border-primary text-white" placeholder="Amount" name="Amount" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center text-center">
+                            <div class="col-auto">
+                                <label class="col-form-label text-white fw-bold fs-5 ms-2">Convert to: </label>
+                            </div>
+
+                            <div class="ms-4 col-8">
+                                <div class="input-group mb-3 px-3 bg-dark text-white mt-3">
+                                    <select class="form-select d-inline" name="ToCurrency" required>
+                                        <option selected disabled>Currency</option>
+                                        <option value="1">United States Dollar</option>
+                                        <option value="2">Euro</option>
+                                        <option value="3">Dominican Peso</option>
+                                    </select>
+                                </div>
+                            </div>
+                         </div>
+
+                        <button class="btn btn-lg btn-primary float-end me-2 mt-3" type="submit">Convert</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
